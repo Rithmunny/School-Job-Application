@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meow School Job Application Form</title>
+    <link rel="stylesheet" type="text/css" href="style2.css">
+    <script>
+        // JavaScript function for form validation
+        function validateForm() {
+            var name = document.forms["jobApplicationForm"]["name"].value;
+            var email = document.forms["jobApplicationForm"]["email"].value;
+            var phoneNumber = document.forms["jobApplicationForm"]["phone"].value;
+            var resume = document.forms["jobApplicationForm"]["resume"].value;
+            var position = document.forms["jobApplicationForm"]["position"].value;
+
+            if (name == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+
+            if (email == "") {
+                alert("Email must be filled out");
+                return false;
+            }
+
+            // Basic email validation
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!email.match(emailPattern)) {
+                alert("Invalid email address");
+                return false;
+            }
+
+            if (phoneNumber == "") {
+                alert("Phone number must be filled out");
+                return false;
+            }
+
+            // Basic phone number validation
+            var phonePattern = /^\d{10}$/;
+            if (!phoneNumber.match(phonePattern)) {
+                alert("Invalid phone number (10 digits without spaces or special characters)");
+                return false;
+            }
+
+            if (resume == "") {
+                alert("Please upload your resume");
+                return false;
+            }
+
+            if (position == "") {
+                alert("Position must be selected");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Job Application Form</h1>
+    <form name="jobApplicationForm" action="process_application.php" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required><br><br>
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" required><br><br>
+
+        <label for="resume">Resume (PDF or Word document):</label>
+        <input type="file" id="resume" name="resume" accept=".pdf, .doc, .docx" required><br><br>
+
+        <label for="position">Position Applying For:</label>
+        <select id="position" name="position" required>
+            <option value="">Select Position</option>
+            <option value="teacher">Python</option>
+            <option value="administrator">Java</option>
+            <option value="support_staff">Math</option>
+            <option value="support_staff">Data Structure</option>
+            <option value="support_staff">Data Base</option>
+        </select><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
